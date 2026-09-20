@@ -17,7 +17,47 @@ message HeaderRequest {
   }];
 }
 
+message CreateAccountRequest {
+  string name = 1 [(buf.validate.field).string = {
+    min_len: 1,
+    max_len: 50,
+  }];
+  string phone_number = 2 [(buf.validate.field).string = {
+    min_len: 10,
+    max_len: 15,
+  }];
+  string email = 3 [(buf.validate.field).string = {
+    min_len: 5,
+    max_len: 50,
+  }];
+  string password = 4 [(buf.validate.field).string = {
+    min_len: 8,
+    max_len: 50,
+  }];
+}
+
+message LoginRequest {
+  string email = 1 [(buf.validate.field).string = {
+    min_len: 5,
+    max_len: 50,
+  }];
+  string password = 2 [(buf.validate.field).string = {
+    min_len: 8,
+    max_len: 50,
+  }];
+}
+
 message ProfileRequest {}
+
+message CreateAccountResponse {
+  string name = 1;
+  string phone_number = 2;
+  string email = 3;
+}
+
+message LoginResponse {
+  string token = 1;
+}
 
 message ProfileResponse {
   string name = 1;
@@ -37,4 +77,6 @@ service GreetService {
   rpc Greet(GreetRequest) returns (GreetResponse) {}
   rpc Header(HeaderRequest) returns (HeaderResponse) {}
   rpc Profile(ProfileRequest) returns (ProfileResponse) {}
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
 }

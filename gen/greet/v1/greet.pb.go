@@ -110,6 +110,126 @@ func (x *HeaderRequest) GetRequestId() float64 {
 	return 0
 }
 
+type CreateAccountRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	PhoneNumber   string                 `protobuf:"bytes,2,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string                 `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateAccountRequest) Reset() {
+	*x = CreateAccountRequest{}
+	mi := &file_greet_v1_greet_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateAccountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAccountRequest) ProtoMessage() {}
+
+func (x *CreateAccountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_greet_v1_greet_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAccountRequest.ProtoReflect.Descriptor instead.
+func (*CreateAccountRequest) Descriptor() ([]byte, []int) {
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateAccountRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateAccountRequest) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return ""
+}
+
+func (x *CreateAccountRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *CreateAccountRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type LoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
+	mi := &file_greet_v1_greet_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginRequest) ProtoMessage() {}
+
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_greet_v1_greet_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *LoginRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
 type ProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -118,7 +238,7 @@ type ProfileRequest struct {
 
 func (x *ProfileRequest) Reset() {
 	*x = ProfileRequest{}
-	mi := &file_greet_v1_greet_proto_msgTypes[2]
+	mi := &file_greet_v1_greet_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -130,7 +250,7 @@ func (x *ProfileRequest) String() string {
 func (*ProfileRequest) ProtoMessage() {}
 
 func (x *ProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_greet_v1_greet_proto_msgTypes[2]
+	mi := &file_greet_v1_greet_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -143,7 +263,111 @@ func (x *ProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileRequest.ProtoReflect.Descriptor instead.
 func (*ProfileRequest) Descriptor() ([]byte, []int) {
-	return file_greet_v1_greet_proto_rawDescGZIP(), []int{2}
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{4}
+}
+
+type CreateAccountResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	PhoneNumber   string                 `protobuf:"bytes,2,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateAccountResponse) Reset() {
+	*x = CreateAccountResponse{}
+	mi := &file_greet_v1_greet_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateAccountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAccountResponse) ProtoMessage() {}
+
+func (x *CreateAccountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_greet_v1_greet_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAccountResponse.ProtoReflect.Descriptor instead.
+func (*CreateAccountResponse) Descriptor() ([]byte, []int) {
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CreateAccountResponse) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CreateAccountResponse) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return ""
+}
+
+func (x *CreateAccountResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type LoginResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginResponse) Reset() {
+	*x = LoginResponse{}
+	mi := &file_greet_v1_greet_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginResponse) ProtoMessage() {}
+
+func (x *LoginResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_greet_v1_greet_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
+func (*LoginResponse) Descriptor() ([]byte, []int) {
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *LoginResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
 }
 
 type ProfileResponse struct {
@@ -157,7 +381,7 @@ type ProfileResponse struct {
 
 func (x *ProfileResponse) Reset() {
 	*x = ProfileResponse{}
-	mi := &file_greet_v1_greet_proto_msgTypes[3]
+	mi := &file_greet_v1_greet_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -169,7 +393,7 @@ func (x *ProfileResponse) String() string {
 func (*ProfileResponse) ProtoMessage() {}
 
 func (x *ProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_greet_v1_greet_proto_msgTypes[3]
+	mi := &file_greet_v1_greet_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -182,7 +406,7 @@ func (x *ProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProfileResponse.ProtoReflect.Descriptor instead.
 func (*ProfileResponse) Descriptor() ([]byte, []int) {
-	return file_greet_v1_greet_proto_rawDescGZIP(), []int{3}
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ProfileResponse) GetName() string {
@@ -215,7 +439,7 @@ type GreetResponse struct {
 
 func (x *GreetResponse) Reset() {
 	*x = GreetResponse{}
-	mi := &file_greet_v1_greet_proto_msgTypes[4]
+	mi := &file_greet_v1_greet_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -227,7 +451,7 @@ func (x *GreetResponse) String() string {
 func (*GreetResponse) ProtoMessage() {}
 
 func (x *GreetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_greet_v1_greet_proto_msgTypes[4]
+	mi := &file_greet_v1_greet_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -240,7 +464,7 @@ func (x *GreetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GreetResponse.ProtoReflect.Descriptor instead.
 func (*GreetResponse) Descriptor() ([]byte, []int) {
-	return file_greet_v1_greet_proto_rawDescGZIP(), []int{4}
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GreetResponse) GetGreeting() string {
@@ -259,7 +483,7 @@ type HeaderResponse struct {
 
 func (x *HeaderResponse) Reset() {
 	*x = HeaderResponse{}
-	mi := &file_greet_v1_greet_proto_msgTypes[5]
+	mi := &file_greet_v1_greet_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -271,7 +495,7 @@ func (x *HeaderResponse) String() string {
 func (*HeaderResponse) ProtoMessage() {}
 
 func (x *HeaderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_greet_v1_greet_proto_msgTypes[5]
+	mi := &file_greet_v1_greet_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -284,7 +508,7 @@ func (x *HeaderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeaderResponse.ProtoReflect.Descriptor instead.
 func (*HeaderResponse) Descriptor() ([]byte, []int) {
-	return file_greet_v1_greet_proto_rawDescGZIP(), []int{5}
+	return file_greet_v1_greet_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *HeaderResponse) GetRequestId() float64 {
@@ -303,8 +527,23 @@ const file_greet_v1_greet_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x182R\x04name\">\n" +
 	"\rHeaderRequest\x12-\n" +
 	"\n" +
-	"request_id\x18\x01 \x01(\x01B\x0e\xbaH\v\x12\t!\x00\x00\x00\x00\x00\x00\x00\x00R\trequestId\"\x10\n" +
-	"\x0eProfileRequest\"^\n" +
+	"request_id\x18\x01 \x01(\x01B\x0e\xbaH\v\x12\t!\x00\x00\x00\x00\x00\x00\x00\x00R\trequestId\"\xab\x01\n" +
+	"\x14CreateAccountRequest\x12\x1d\n" +
+	"\x04name\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x182R\x04name\x12,\n" +
+	"\fphone_number\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\n" +
+	"\x18\x0fR\vphoneNumber\x12\x1f\n" +
+	"\x05email\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x182R\x05email\x12%\n" +
+	"\bpassword\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\b\x182R\bpassword\"V\n" +
+	"\fLoginRequest\x12\x1f\n" +
+	"\x05email\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x182R\x05email\x12%\n" +
+	"\bpassword\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\b\x182R\bpassword\"\x10\n" +
+	"\x0eProfileRequest\"d\n" +
+	"\x15CreateAccountResponse\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12!\n" +
+	"\fphone_number\x18\x02 \x01(\tR\vphoneNumber\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\"%\n" +
+	"\rLoginResponse\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"^\n" +
 	"\x0fProfileResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12!\n" +
 	"\fphone_number\x18\x02 \x01(\tR\vphoneNumber\x12\x14\n" +
@@ -313,11 +552,13 @@ const file_greet_v1_greet_proto_rawDesc = "" +
 	"\bgreeting\x18\x01 \x01(\tR\bgreeting\"/\n" +
 	"\x0eHeaderResponse\x12\x1d\n" +
 	"\n" +
-	"request_id\x18\x01 \x01(\x01R\trequestId2\xcb\x01\n" +
+	"request_id\x18\x01 \x01(\x01R\trequestId2\xdb\x02\n" +
 	"\fGreetService\x12:\n" +
 	"\x05Greet\x12\x16.greet.v1.GreetRequest\x1a\x17.greet.v1.GreetResponse\"\x00\x12=\n" +
 	"\x06Header\x12\x17.greet.v1.HeaderRequest\x1a\x18.greet.v1.HeaderResponse\"\x00\x12@\n" +
-	"\aProfile\x12\x18.greet.v1.ProfileRequest\x1a\x19.greet.v1.ProfileResponse\"\x00By\n" +
+	"\aProfile\x12\x18.greet.v1.ProfileRequest\x1a\x19.greet.v1.ProfileResponse\"\x00\x12R\n" +
+	"\rCreateAccount\x12\x1e.greet.v1.CreateAccountRequest\x1a\x1f.greet.v1.CreateAccountResponse\"\x00\x12:\n" +
+	"\x05Login\x12\x16.greet.v1.LoginRequest\x1a\x17.greet.v1.LoginResponse\"\x00By\n" +
 	"\fcom.greet.v1B\n" +
 	"GreetProtoP\x01Z\x1cexample/gen/greet/v1;greetv1\xa2\x02\x03GXX\xaa\x02\bGreet.V1\xca\x02\bGreet\\V1\xe2\x02\x14Greet\\V1\\GPBMetadata\xea\x02\tGreet::V1b\x06proto3"
 
@@ -333,24 +574,32 @@ func file_greet_v1_greet_proto_rawDescGZIP() []byte {
 	return file_greet_v1_greet_proto_rawDescData
 }
 
-var file_greet_v1_greet_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_greet_v1_greet_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_greet_v1_greet_proto_goTypes = []any{
-	(*GreetRequest)(nil),    // 0: greet.v1.GreetRequest
-	(*HeaderRequest)(nil),   // 1: greet.v1.HeaderRequest
-	(*ProfileRequest)(nil),  // 2: greet.v1.ProfileRequest
-	(*ProfileResponse)(nil), // 3: greet.v1.ProfileResponse
-	(*GreetResponse)(nil),   // 4: greet.v1.GreetResponse
-	(*HeaderResponse)(nil),  // 5: greet.v1.HeaderResponse
+	(*GreetRequest)(nil),          // 0: greet.v1.GreetRequest
+	(*HeaderRequest)(nil),         // 1: greet.v1.HeaderRequest
+	(*CreateAccountRequest)(nil),  // 2: greet.v1.CreateAccountRequest
+	(*LoginRequest)(nil),          // 3: greet.v1.LoginRequest
+	(*ProfileRequest)(nil),        // 4: greet.v1.ProfileRequest
+	(*CreateAccountResponse)(nil), // 5: greet.v1.CreateAccountResponse
+	(*LoginResponse)(nil),         // 6: greet.v1.LoginResponse
+	(*ProfileResponse)(nil),       // 7: greet.v1.ProfileResponse
+	(*GreetResponse)(nil),         // 8: greet.v1.GreetResponse
+	(*HeaderResponse)(nil),        // 9: greet.v1.HeaderResponse
 }
 var file_greet_v1_greet_proto_depIdxs = []int32{
 	0, // 0: greet.v1.GreetService.Greet:input_type -> greet.v1.GreetRequest
 	1, // 1: greet.v1.GreetService.Header:input_type -> greet.v1.HeaderRequest
-	2, // 2: greet.v1.GreetService.Profile:input_type -> greet.v1.ProfileRequest
-	4, // 3: greet.v1.GreetService.Greet:output_type -> greet.v1.GreetResponse
-	5, // 4: greet.v1.GreetService.Header:output_type -> greet.v1.HeaderResponse
-	3, // 5: greet.v1.GreetService.Profile:output_type -> greet.v1.ProfileResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	4, // 2: greet.v1.GreetService.Profile:input_type -> greet.v1.ProfileRequest
+	2, // 3: greet.v1.GreetService.CreateAccount:input_type -> greet.v1.CreateAccountRequest
+	3, // 4: greet.v1.GreetService.Login:input_type -> greet.v1.LoginRequest
+	8, // 5: greet.v1.GreetService.Greet:output_type -> greet.v1.GreetResponse
+	9, // 6: greet.v1.GreetService.Header:output_type -> greet.v1.HeaderResponse
+	7, // 7: greet.v1.GreetService.Profile:output_type -> greet.v1.ProfileResponse
+	5, // 8: greet.v1.GreetService.CreateAccount:output_type -> greet.v1.CreateAccountResponse
+	6, // 9: greet.v1.GreetService.Login:output_type -> greet.v1.LoginResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -367,7 +616,7 @@ func file_greet_v1_greet_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_greet_v1_greet_proto_rawDesc), len(file_greet_v1_greet_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

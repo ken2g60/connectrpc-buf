@@ -39,6 +39,11 @@ const (
 	GreetServiceHeaderProcedure = "/greet.v1.GreetService/Header"
 	// GreetServiceProfileProcedure is the fully-qualified name of the GreetService's Profile RPC.
 	GreetServiceProfileProcedure = "/greet.v1.GreetService/Profile"
+	// GreetServiceCreateAccountProcedure is the fully-qualified name of the GreetService's
+	// CreateAccount RPC.
+	GreetServiceCreateAccountProcedure = "/greet.v1.GreetService/CreateAccount"
+	// GreetServiceLoginProcedure is the fully-qualified name of the GreetService's Login RPC.
+	GreetServiceLoginProcedure = "/greet.v1.GreetService/Login"
 )
 
 // GreetServiceClient is a client for the greet.v1.GreetService service.
@@ -46,6 +51,8 @@ type GreetServiceClient interface {
 	Greet(context.Context, *v1.GreetRequest) (*v1.GreetResponse, error)
 	Header(context.Context, *v1.HeaderRequest) (*v1.HeaderResponse, error)
 	Profile(context.Context, *v1.ProfileRequest) (*v1.ProfileResponse, error)
+	CreateAccount(context.Context, *v1.CreateAccountRequest) (*v1.CreateAccountResponse, error)
+	Login(context.Context, *v1.LoginRequest) (*v1.LoginResponse, error)
 }
 
 // NewGreetServiceClient constructs a client for the greet.v1.GreetService service. By default, it
@@ -77,14 +84,28 @@ func NewGreetServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(greetServiceMethods.ByName("Profile")),
 			connect.WithClientOptions(opts...),
 		),
+		createAccount: connect.NewClient[v1.CreateAccountRequest, v1.CreateAccountResponse](
+			httpClient,
+			baseURL+GreetServiceCreateAccountProcedure,
+			connect.WithSchema(greetServiceMethods.ByName("CreateAccount")),
+			connect.WithClientOptions(opts...),
+		),
+		login: connect.NewClient[v1.LoginRequest, v1.LoginResponse](
+			httpClient,
+			baseURL+GreetServiceLoginProcedure,
+			connect.WithSchema(greetServiceMethods.ByName("Login")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // greetServiceClient implements GreetServiceClient.
 type greetServiceClient struct {
-	greet   *connect.Client[v1.GreetRequest, v1.GreetResponse]
-	header  *connect.Client[v1.HeaderRequest, v1.HeaderResponse]
-	profile *connect.Client[v1.ProfileRequest, v1.ProfileResponse]
+	greet         *connect.Client[v1.GreetRequest, v1.GreetResponse]
+	header        *connect.Client[v1.HeaderRequest, v1.HeaderResponse]
+	profile       *connect.Client[v1.ProfileRequest, v1.ProfileResponse]
+	createAccount *connect.Client[v1.CreateAccountRequest, v1.CreateAccountResponse]
+	login         *connect.Client[v1.LoginRequest, v1.LoginResponse]
 }
 
 // Greet calls greet.v1.GreetService.Greet.
@@ -114,11 +135,31 @@ func (c *greetServiceClient) Profile(ctx context.Context, req *v1.ProfileRequest
 	return nil, err
 }
 
+// CreateAccount calls greet.v1.GreetService.CreateAccount.
+func (c *greetServiceClient) CreateAccount(ctx context.Context, req *v1.CreateAccountRequest) (*v1.CreateAccountResponse, error) {
+	response, err := c.createAccount.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
+// Login calls greet.v1.GreetService.Login.
+func (c *greetServiceClient) Login(ctx context.Context, req *v1.LoginRequest) (*v1.LoginResponse, error) {
+	response, err := c.login.CallUnary(ctx, connect.NewRequest(req))
+	if response != nil {
+		return response.Msg, err
+	}
+	return nil, err
+}
+
 // GreetServiceHandler is an implementation of the greet.v1.GreetService service.
 type GreetServiceHandler interface {
 	Greet(context.Context, *v1.GreetRequest) (*v1.GreetResponse, error)
 	Header(context.Context, *v1.HeaderRequest) (*v1.HeaderResponse, error)
 	Profile(context.Context, *v1.ProfileRequest) (*v1.ProfileResponse, error)
+	CreateAccount(context.Context, *v1.CreateAccountRequest) (*v1.CreateAccountResponse, error)
+	Login(context.Context, *v1.LoginRequest) (*v1.LoginResponse, error)
 }
 
 // NewGreetServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -146,6 +187,18 @@ func NewGreetServiceHandler(svc GreetServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(greetServiceMethods.ByName("Profile")),
 		connect.WithHandlerOptions(opts...),
 	)
+	greetServiceCreateAccountHandler := connect.NewUnaryHandlerSimple(
+		GreetServiceCreateAccountProcedure,
+		svc.CreateAccount,
+		connect.WithSchema(greetServiceMethods.ByName("CreateAccount")),
+		connect.WithHandlerOptions(opts...),
+	)
+	greetServiceLoginHandler := connect.NewUnaryHandlerSimple(
+		GreetServiceLoginProcedure,
+		svc.Login,
+		connect.WithSchema(greetServiceMethods.ByName("Login")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/greet.v1.GreetService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case GreetServiceGreetProcedure:
@@ -154,6 +207,10 @@ func NewGreetServiceHandler(svc GreetServiceHandler, opts ...connect.HandlerOpti
 			greetServiceHeaderHandler.ServeHTTP(w, r)
 		case GreetServiceProfileProcedure:
 			greetServiceProfileHandler.ServeHTTP(w, r)
+		case GreetServiceCreateAccountProcedure:
+			greetServiceCreateAccountHandler.ServeHTTP(w, r)
+		case GreetServiceLoginProcedure:
+			greetServiceLoginHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -173,4 +230,12 @@ func (UnimplementedGreetServiceHandler) Header(context.Context, *v1.HeaderReques
 
 func (UnimplementedGreetServiceHandler) Profile(context.Context, *v1.ProfileRequest) (*v1.ProfileResponse, error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("greet.v1.GreetService.Profile is not implemented"))
+}
+
+func (UnimplementedGreetServiceHandler) CreateAccount(context.Context, *v1.CreateAccountRequest) (*v1.CreateAccountResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("greet.v1.GreetService.CreateAccount is not implemented"))
+}
+
+func (UnimplementedGreetServiceHandler) Login(context.Context, *v1.LoginRequest) (*v1.LoginResponse, error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("greet.v1.GreetService.Login is not implemented"))
 }
