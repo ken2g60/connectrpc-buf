@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package greet.v1;
+
+import "buf/validate/validate.proto";
+
+message GreetRequest {
+  string name = 1 [(buf.validate.field).string = {
+    min_len: 1,
+    max_len: 50,
+  }];
+}
+
+message HeaderRequest {
+  double request_id = 1 [(buf.validate.field).double = {
+    gt: 0,
+  }];
+}
+
+message ProfileRequest {}
+
+message ProfileResponse {
+  string name = 1;
+  string phone_number = 2;
+  string email = 3;
+}
+
+message GreetResponse {
+  string greeting = 1;
+}
+
+message HeaderResponse {
+  double request_id = 1;
+}
+
+service GreetService {
+  rpc Greet(GreetRequest) returns (GreetResponse) {}
+  rpc Header(HeaderRequest) returns (HeaderResponse) {}
+  rpc Profile(ProfileRequest) returns (ProfileResponse) {}
+}
