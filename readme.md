@@ -28,10 +28,6 @@ buf curl \
 
 ```
 
-buf dep update
-buf lint
-buf generate
-
-```
-
-```
+- buf dep update
+- buf lint
+- buf generate
