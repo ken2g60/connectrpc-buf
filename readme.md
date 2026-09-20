@@ -1,3 +1,30 @@
+## How to start the project
+
+### Prerequisites
+- Go 1.27+ installed (check with `go version`)
+- [Buf](https://docs.buf.build/installation) installed (`brew install buf` on macOS)
+
+### Setup
+```sh
+# Install dependencies and generate code
+buf dep update && buf lint && buf generate
+```
+
+### Run the server
+```sh
+go run ./cmd/server
+```
+The server will start on `localhost:8080`.
+
+### Run the client example
+In a separate terminal, execute:
+```sh
+go run ./cmd/client
+```
+You should see the greeting logged to the console.
+
+You can also try the `buf curl` examples above to interact with the service.
+
 ```
 buf curl \
  --schema ./greet/v1/greet.proto \
